@@ -1,5 +1,36 @@
 <!DOCTYPE html>
 <html lang="fr">
+    <style>
+    footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        padding: 15px 0;
+        text-align: center;
+        box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    }
+
+    .auth-btn {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        font-size: 18px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .auth-btn:hover {
+        background-color: #45a049;
+    }
+
+    body {
+        margin: 0;
+        padding-bottom: 80px; /* Pour ne pas cacher le contenu sous le footer */
+    }
+</style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,4 +39,7 @@
 <body>
     <h1>EquiliSanté</h1>
 </body>
+<footer>
+    <button class="auth-btn">S'authentifier</button>
+</footer>
 </html>
