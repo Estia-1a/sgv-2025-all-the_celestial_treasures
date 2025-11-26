@@ -30,6 +30,18 @@
         margin: 0;
         padding-bottom: 80px; /* Pour ne pas cacher le contenu sous le footer */
     }
+    .logo-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.logo {
+    width: 150px; /* Ajuste la taille du logo si besoin */
+}
+
 </style>
 <head>
     <meta charset="UTF-8">
@@ -38,6 +50,9 @@
 </head>
 <body>
     <h1>EquiliSanté</h1>
+    <div class="logo-container">
+    <img src="santé.png" alt="Logo EquiliSanté" class="logo">
+</div>
 </body>
 <footer>
     <button class="auth-btn">S'authentifier</button>
