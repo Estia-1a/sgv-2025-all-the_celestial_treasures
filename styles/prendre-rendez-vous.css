@@ -237,7 +237,7 @@ nav a:hover {
 }
 
 .confirm-btn {
-    background-color: #63f7ff;
+    background-color: #90ee90; /* Light green */
     border: 1px solid black;
     color: #000; 
     padding: 8px 20px;
@@ -249,7 +249,7 @@ nav a:hover {
 }
 
 .confirm-btn:hover {
-    background-color: #f0f0f0;
+    background-color: #76c776; /* Slightly darker green on hover */
 }
 
 .confirm-container {
