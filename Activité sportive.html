@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activité Sportive - EquiliSanté</title>
+    <style>
+        /* Style global - Basé sur alimentation.html */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(145deg, #72f399, #3eda68);
+            overflow: hidden;
+        }
+
+        /* En-tête */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+        
+        nav a:hover, nav a.active {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        /* Main Layout */
+        main {
+            flex: 1;
+            display: flex;
+            position: relative;
+            padding: 20px 60px;
+            gap: 40px;
+        }
+
+        .section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Large Chart Card */
+        .large-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 600px;
+            height: 450px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #333;
+            position: relative;
+        }
+
+        /* Toggle Switch Style */
+        .toggle-container {
+            display: flex;
+            background: #f0f0f0;
+            border-radius: 20px;
+            padding: 5px;
+            margin-bottom: 20px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .toggle-btn {
+            padding: 8px 20px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 15px;
+            font-weight: bold;
+            color: #666;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+
+        .toggle-btn.active {
+            background: white;
+            color: #2a9d8f;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Chart Area */
+        .chart-area {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 20px;
+            /* Axes */
+            border-left: 3px solid #333;
+            border-bottom: 3px solid #333;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .chart-area svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        /* Label at bottom */
+        .chart-label {
+            background: white;
+            border: 2px solid #2a9d8f;
+            color: #2a9d8f;
+            padding: 10px 25px;
+            font-weight: bold;
+            border-radius: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-size: 16px;
+        }
+
+        /* Buttons */
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: absolute;
+            bottom: 0;
+        }
+
+        .back-btn {
+            background: white;
+            color: #333;
+            left: 0;
+        }
+
+        .confirm-btn {
+            background: #2a9d8f;
+            color: white;
+            right: 0;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            main { 
+                flex-direction: column; 
+                overflow-y: auto; 
+                padding-bottom: 80px;
+                gap: 60px;
+            }
+            .action-btn { 
+                position: static; 
+                width: 100%; 
+                margin-top: 20px; 
+            }
+            .section {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">EquiliSanté</div>
+
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="#">Authentification</a>
+        <a href="menu.html">Menu</a>
+        <a href="alimentation.html" class="active">Bien-être</a>
+        <a href="Prendre Rendez-vous.html">Prendre RDV</a>
+    </nav>
+</header>
+
+<main>
+    <!-- Left Section: Activité physique -->
+    <div class="section">
+        <div class="large-card">
+            <div class="toggle-container">
+                <button class="toggle-btn">Jours</button>
+                <button class="toggle-btn active">Semaine</button>
+                <button class="toggle-btn">Mois</button>
+            </div>
+            
+            <div class="chart-area">
+                <!-- Line Chart SVG -->
+                <svg viewBox="0 0 100 50" preserveAspectRatio="none">
+                    <!-- Grey Line -->
+                    <polyline points="0,40 25,30 50,25 75,30 100,15" fill="none" stroke="#ccc" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <!-- Green Line -->
+                    <polyline points="0,35 25,32 50,20 75,10 100,18" fill="none" stroke="#2a9d8f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+
+            <div class="chart-label">Activité physique</div>
+        </div>
+        
+        <a href="alimentation.html" class="action-btn back-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Retour
+        </a>
+    </div>
+
+    <!-- Right Section: Nombres de pas -->
+    <div class="section">
+        <div class="large-card">
+            <div class="toggle-container">
+                <button class="toggle-btn">Jours</button>
+                <button class="toggle-btn active">Semaine</button>
+                <button class="toggle-btn">Mois</button>
+            </div>
+
+            <div class="chart-area">
+                <!-- Bar Chart SVG -->
+                <svg viewBox="0 0 100 50" preserveAspectRatio="none">
+                    <rect x="15" y="25" width="15" height="25" fill="#e0e0e0" stroke="#333" stroke-width="1"/>
+                    <rect x="35" y="20" width="15" height="30" fill="#999" stroke="#333" stroke-width="1"/>
+                    <rect x="60" y="5" width="15" height="45" fill="#e0e0e0" stroke="#333" stroke-width="1"/>
+                    <rect x="80" y="10" width="15" height="40" fill="#999" stroke="#333" stroke-width="1"/>
+                </svg>
+            </div>
+
+            <div class="chart-label">Nombres de pas</div>
+        </div>
+
+        <button class="action-btn confirm-btn">
+            Confirmer
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+    </div>
+</main>
+
+</body>
+</html>
