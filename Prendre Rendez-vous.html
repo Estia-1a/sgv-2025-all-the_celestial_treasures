@@ -31,18 +31,18 @@
         <!-- Right Panel -->
         <div class="right-panel">
             <div class="date-selector">
-                <input type="text" class="date-input" placeholder="HH:MM" value="HH:MM">
-                <input type="text" class="date-input" placeholder="DD / MM / YYYY" value="DD / MM / YYYY">
+                <input type="text" id="time-input" class="date-input" placeholder="HH:MM" value="09:00">
+                <input type="text" id="date-input" class="date-input" placeholder="DD / MM / YYYY">
                 <span class="calendar-icon">📅</span>
             </div>
 
             <div class="calendar-container">
                 <div class="calendar-header">
-                    <span>◄</span>
-                    <span>NOVEMBER 2025</span>
-                    <span>►</span>
+                    <span id="prev-month" style="cursor: pointer;">◄</span>
+                    <span id="month-label">NOVEMBER 2025</span>
+                    <span id="next-month" style="cursor: pointer;">►</span>
                 </div>
-                <div class="calendar-grid">
+                <div id="calendar-grid" class="calendar-grid">
                     <div class="day-name">S</div>
                     <div class="day-name">M</div>
                     <div class="day-name">T</div>
@@ -50,60 +50,7 @@
                     <div class="day-name">T</div>
                     <div class="day-name">F</div>
                     <div class="day-name">S</div>
-
-                    <!-- Week 1 -->
-                    <div class="calendar-cell"><span class="date-number" style="color: #ccc;">30</span></div>
-                    <div class="calendar-cell"><span class="date-number">1</span></div>
-                    <div class="calendar-cell"><span class="date-number">2</span></div>
-                    <div class="calendar-cell"><span class="date-number">3</span></div>
-                    <div class="calendar-cell"><span class="date-number selected-date">4</span></div>
-                    <div class="calendar-cell"><span class="date-number">5</span></div>
-                    <div class="calendar-cell"><span class="date-number">6</span></div>
-
-                    <!-- Week 2 -->
-                    <div class="calendar-cell"><span class="date-number">7</span></div>
-                    <div class="calendar-cell"><span class="date-number">8</span></div>
-                    <div class="calendar-cell"><span class="date-number">9</span></div>
-                    <div class="calendar-cell"><span class="date-number">10</span></div>
-                    <div class="calendar-cell"><span class="date-number">11</span></div>
-                    <div class="calendar-cell"><span class="date-number">12</span></div>
-                    <div class="calendar-cell"><span class="date-number">13</span></div>
-
-                    <!-- Week 3 -->
-                    <div class="calendar-cell"><span class="date-number">14</span></div>
-                    <div class="calendar-cell"><span class="date-number">15</span></div>
-                    <div class="calendar-cell"><span class="date-number">16</span></div>
-                    <div class="calendar-cell"><span class="date-number">17</span></div>
-                    <div class="calendar-cell"><span class="date-number">18</span></div>
-                    <div class="calendar-cell"><span class="date-number">19</span></div>
-                    <div class="calendar-cell"><span class="date-number">20</span></div>
-
-                    <!-- Week 4 -->
-                    <div class="calendar-cell"><span class="date-number">21</span></div>
-                    <div class="calendar-cell"><span class="date-number">22</span></div>
-                    <div class="calendar-cell"><span class="date-number">23</span></div>
-                    <div class="calendar-cell"><span class="date-number">24</span></div>
-                    <div class="calendar-cell"><span class="date-number">25</span></div>
-                    <div class="calendar-cell"><span class="date-number">26</span></div>
-                    <div class="calendar-cell"><span class="date-number">27</span></div>
-
-                    <!-- Week 5 -->
-                    <div class="calendar-cell"><span class="date-number">28</span></div>
-                    <div class="calendar-cell"><span class="date-number">29</span></div>
-                    <div class="calendar-cell"><span class="date-number">30</span></div>
-                    <div class="calendar-cell"><span class="date-number">31</span></div>
-                    <div class="calendar-cell"><span class="date-number" style="color: #ccc;">1</span></div>
-                    <div class="calendar-cell"><span class="date-number" style="color: #ccc;">2</span></div>
-                    <div class="calendar-cell"><span class="date-number" style="color: #ccc;">3</span></div>
-                    
-                    <!-- Week 6 -->
-                    <div class="calendar-cell"><span class="date-number" style="color: #ccc;">4</span></div>
-                    <div class="calendar-cell"><span class="date-number" style="color: #ccc;">5</span></div>
-                    <div class="calendar-cell"><span class="date-number" style="color: #ccc;">6</span></div>
-                    <div class="calendar-cell"><span class="date-number" style="color: #ccc;">7</span></div>
-                    <div class="calendar-cell"><span class="date-number" style="color: #ccc;">8</span></div>
-                    <div class="calendar-cell"><span class="date-number" style="color: #ccc;">9</span></div>
-                    <div class="calendar-cell"><span class="date-number" style="color: #ccc;">10</span></div>
+                    <!-- Calendar cells will be generated by JS -->
                 </div>
             </div>
             <div class="confirm-container">
@@ -301,7 +248,13 @@
                     document.getElementById("info-doc-name").innerText = selectedDoctor.name;
                     document.getElementById("info-doc-address").innerText = selectedDoctor.address;
                     
-                    // Here we could also update date/time if we had logic for that
+                    // Update date and time
+                    var dateVal = document.getElementById("date-input").value;
+                    var timeVal = document.getElementById("time-input").value;
+                    
+                    if(document.getElementById("info-date")) document.getElementById("info-date").innerText = dateVal;
+                    if(document.getElementById("info-time")) document.getElementById("info-time").innerText = timeVal;
+
                 } else {
                     modalText.innerText = "Détails pour : " + text;
                 }
@@ -312,6 +265,133 @@
         confirmBtn.onclick = function() {
             modal.style.display = "none";
         }
+
+        // --- Calendar Logic ---
+        var currentDate = new Date(); // For navigation
+        var selectedDateObj = new Date(); // For selection (default today)
+        
+        var monthNames = ["JANVIER", "FÉVRIER", "MARS", "AVRIL", "MAI", "JUIN", "JUILLET", "AOÛT", "SEPTEMBRE", "OCTOBRE", "NOVEMBRE", "DÉCEMBRE"];
+
+        function initCalendar() {
+            renderCalendar();
+            updateDateInput();
+            
+            document.getElementById("prev-month").onclick = function() {
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                renderCalendar();
+            };
+            
+            document.getElementById("next-month").onclick = function() {
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                renderCalendar();
+            };
+            
+            // Input listener
+            var dateInput = document.getElementById("date-input");
+            dateInput.addEventListener("change", function() {
+                var parts = this.value.split('/');
+                if (parts.length === 3) {
+                    var d = parseInt(parts[0].trim());
+                    var m = parseInt(parts[1].trim()) - 1; // Month is 0-indexed
+                    var y = parseInt(parts[2].trim());
+                    
+                    var newDate = new Date(y, m, d);
+                    if (!isNaN(newDate.getTime())) {
+                        selectedDateObj = newDate;
+                        currentDate = new Date(y, m, 1); // Switch view to that month
+                        renderCalendar();
+                        // Also update the info view if open? 
+                        // It updates automatically when opening the modal, but if we want real-time:
+                        // We'd need a global update function. For now, modal opening handles it.
+                    }
+                }
+            });
+        }
+
+        function updateDateInput() {
+            var d = selectedDateObj.getDate();
+            var m = selectedDateObj.getMonth() + 1;
+            var y = selectedDateObj.getFullYear();
+            
+            // Pad with zeros
+            var dStr = d < 10 ? '0' + d : d;
+            var mStr = m < 10 ? '0' + m : m;
+            
+            document.getElementById("date-input").value = dStr + " / " + mStr + " / " + y;
+        }
+
+        function renderCalendar() {
+            var year = currentDate.getFullYear();
+            var month = currentDate.getMonth();
+            
+            document.getElementById("month-label").innerText = monthNames[month] + " " + year;
+            
+            var firstDay = new Date(year, month, 1).getDay(); // 0 = Sunday
+            var daysInMonth = new Date(year, month + 1, 0).getDate();
+            
+            // Previous month details
+            var prevMonthLastDay = new Date(year, month, 0).getDate();
+            
+            var grid = document.getElementById("calendar-grid");
+            // Clear existing cells (keep headers)
+            var headers = grid.getElementsByClassName("day-name");
+            var headerHTML = "";
+            for(var i=0; i<headers.length; i++) headerHTML += headers[i].outerHTML;
+            grid.innerHTML = headerHTML;
+            
+            // Calculate cells
+            // We need 6 rows of 7 days = 42 cells usually to cover all months
+            
+            var dayCount = 1;
+            var nextMonthDay = 1;
+            
+            for (var i = 0; i < 42; i++) {
+                var cell = document.createElement("div");
+                cell.className = "calendar-cell";
+                var span = document.createElement("span");
+                span.className = "date-number";
+                
+                // Previous month days
+                if (i < firstDay) {
+                    span.innerText = prevMonthLastDay - (firstDay - 1 - i);
+                    span.style.color = "#ccc";
+                } 
+                // Current month days
+                else if (dayCount <= daysInMonth) {
+                    span.innerText = dayCount;
+                    
+                    // Check if this is the selected date
+                    if (selectedDateObj.getDate() === dayCount && 
+                        selectedDateObj.getMonth() === month && 
+                        selectedDateObj.getFullYear() === year) {
+                        span.classList.add("selected-date");
+                    }
+                    
+                    // Click event
+                    (function(d) {
+                        cell.onclick = function() {
+                            selectedDateObj = new Date(year, month, d);
+                            updateDateInput();
+                            renderCalendar(); // Re-render to update selection style
+                        };
+                    })(dayCount);
+                    
+                    dayCount++;
+                } 
+                // Next month days
+                else {
+                    span.innerText = nextMonthDay;
+                    span.style.color = "#ccc";
+                    nextMonthDay++;
+                }
+                
+                cell.appendChild(span);
+                grid.appendChild(cell);
+            }
+        }
+
+        // Initialize
+        initCalendar();
     </script>
 </body>
 </html>
