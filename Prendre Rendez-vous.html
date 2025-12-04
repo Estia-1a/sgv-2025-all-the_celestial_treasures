@@ -115,38 +115,15 @@
     <!-- Templates for Modal Content (Hidden) -->
     <div id="template-choisir-medecin" style="display: none;">
         <div class="filter-container">
-            <select class="doctor-select">
-                <option>Choisir</option>
-                <option>Médecin généraliste</option>
-                <option>Kiné</option>
-                <option>Dentiste</option>
+            <select id="doctor-category-select" class="doctor-select">
+                <option value="">Choisir le type de spécialiste</option>
+                <option value="generaliste">Médecin généraliste</option>
+                <option value="kine">Kiné</option>
+                <option value="dentiste">Dentiste</option>
             </select>
         </div>
-        <div class="doctor-list">
-            <div class="doctor-card" onclick="selectDoctor(this, 'Docteur Martin', 'Rue des Lilas, 64120 Bidart')">
-                <div>
-                    <strong>Docteur Martin</strong><br>
-                    Rue des Lilas, 64120 Bidart
-                </div>
-            </div>
-            <div class="doctor-card" onclick="selectDoctor(this, 'Docteur Dupont', 'Avenue de la Plage, 64120 Bidart')">
-                <div>
-                    <strong>Docteur Dupont</strong><br>
-                    Avenue de la Plage, 64120 Bidart
-                </div>
-            </div>
-            <div class="doctor-card" onclick="selectDoctor(this, 'Docteur Durand', 'Place de la Mairie, 64120 Bidart')">
-                <div>
-                    <strong>Docteur Durand</strong><br>
-                    Place de la Mairie, 64120 Bidart
-                </div>
-            </div>
-            <div class="doctor-card" onclick="selectDoctor(this, 'Docteur Leroy', 'Boulevard des Pyrénées, 64120 Bidart')">
-                <div>
-                    <strong>Docteur Leroy</strong><br>
-                    Boulevard des Pyrénées, 64120 Bidart
-                </div>
-            </div>
+        <div id="doctor-list-container" class="doctor-list">
+            <p style="text-align: center; color: #666; margin-top: 50px;">Veuillez sélectionner un type de médecin pour voir la liste.</p>
         </div>
     </div>
 
@@ -189,6 +166,46 @@
             address: "Rue ..., 64120 Bidart"
         };
 
+        // Data for doctors (10 per category)
+        var doctorsData = {
+            "generaliste": [
+                { name: "Dr. Martin", address: "Rue des Lilas, 64120 Bidart" },
+                { name: "Dr. Dupont", address: "Avenue de la Plage, 64120 Bidart" },
+                { name: "Dr. Durand", address: "Place de la Mairie, 64120 Bidart" },
+                { name: "Dr. Leroy", address: "Boulevard des Pyrénées, 64120 Bidart" },
+                { name: "Dr. Moreau", address: "Rue de la Gare, 64120 Bidart" },
+                { name: "Dr. Simon", address: "Allée des Fleurs, 64120 Bidart" },
+                { name: "Dr. Laurent", address: "Chemin du Moulin, 64120 Bidart" },
+                { name: "Dr. Michel", address: "Route de Bayonne, 64120 Bidart" },
+                { name: "Dr. Garcia", address: "Avenue Kennedy, 64120 Bidart" },
+                { name: "Dr. Thomas", address: "Rue Victor Hugo, 64120 Bidart" }
+            ],
+            "kine": [
+                { name: "Mme. Petit", address: "Rue du Centre, 64120 Bidart" },
+                { name: "M. Roux", address: "Avenue de la Mer, 64120 Bidart" },
+                { name: "Mme. Blanc", address: "Place du Marché, 64120 Bidart" },
+                { name: "M. Garnier", address: "Rue des Écoles, 64120 Bidart" },
+                { name: "Mme. Faure", address: "Boulevard des Plages, 64120 Bidart" },
+                { name: "M. Lambert", address: "Chemin de la Forêt, 64120 Bidart" },
+                { name: "Mme. Girard", address: "Rue du Port, 64120 Bidart" },
+                { name: "M. Dupuis", address: "Allée des Pins, 64120 Bidart" },
+                { name: "Mme. Bonnet", address: "Route de Biarritz, 64120 Bidart" },
+                { name: "M. Rousseau", address: "Avenue de l'Océan, 64120 Bidart" }
+            ],
+            "dentiste": [
+                { name: "Dr. Bernard", address: "Rue Saint-Jean, 64120 Bidart" },
+                { name: "Dr. Dubois", address: "Place Royale, 64120 Bidart" },
+                { name: "Dr. Robert", address: "Avenue Foch, 64120 Bidart" },
+                { name: "Dr. Richard", address: "Rue Gambetta, 64120 Bidart" },
+                { name: "Dr. Guerin", address: "Boulevard Thiers, 64120 Bidart" },
+                { name: "Dr. Vallet", address: "Chemin des Dames, 64120 Bidart" },
+                { name: "Dr. Morin", address: "Rue du Château, 64120 Bidart" },
+                { name: "Dr. Brun", address: "Allée du Parc, 64120 Bidart" },
+                { name: "Dr. Cote", address: "Route Nationale, 64120 Bidart" },
+                { name: "Dr. Picard", address: "Avenue de la République, 64120 Bidart" }
+            ]
+        };
+
         // Function to handle doctor selection
         function selectDoctor(element, name, address) {
             // Remove selected class from all cards
@@ -202,6 +219,42 @@
             // Update state
             selectedDoctor.name = name;
             selectedDoctor.address = address;
+        }
+
+        // Function to render doctor list based on category
+        function renderDoctors(category) {
+            var container = document.getElementById("doctor-list-container");
+            if (!container) return; // Safety check
+            
+            container.innerHTML = ""; // Clear
+
+            if (!category || !doctorsData[category]) {
+                container.innerHTML = '<p style="text-align: center; color: #666; margin-top: 50px;">Veuillez sélectionner un type de médecin pour voir la liste.</p>';
+                return;
+            }
+
+            var list = doctorsData[category];
+            for (var i = 0; i < list.length; i++) {
+                var doc = list[i];
+                var card = document.createElement("div");
+                card.className = "doctor-card";
+                if (selectedDoctor.name === doc.name) {
+                    card.classList.add("selected");
+                }
+                
+                // Create content
+                var content = '<div><strong>' + doc.name + '</strong><br>' + doc.address + '</div>';
+                card.innerHTML = content;
+                
+                // Add click event closure
+                (function(d, c) {
+                    c.onclick = function() {
+                        selectDoctor(c, d.name, d.address);
+                    };
+                })(doc, card);
+                
+                container.appendChild(card);
+            }
         }
 
         // Loop through buttons to add click event
@@ -219,16 +272,16 @@
                     var template = document.getElementById("template-choisir-medecin").innerHTML;
                     modalText.innerHTML = template;
                     
-                    // Re-apply selection visual if a doctor is already selected
-                    if (selectedDoctor.name !== "Docteur ...") {
-                        // This is a simple check, in a real app we'd use IDs
-                        var cards = modalText.getElementsByClassName("doctor-card");
-                        for (var j = 0; j < cards.length; j++) {
-                            if (cards[j].innerText.includes(selectedDoctor.name)) {
-                                cards[j].classList.add("selected");
-                            }
-                        }
+                    // Add event listener to the select element
+                    var select = document.getElementById("doctor-category-select");
+                    if (select) {
+                        select.onchange = function() {
+                            renderDoctors(this.value);
+                        };
                     }
+                    
+                    // If we wanted to restore the view of the selected doctor's category, we'd need more state logic.
+                    // For now, it starts fresh as requested.
 
                 } else if (text === "Informations du Rendez-vous") {
                     var template = document.getElementById("template-info-rdv").innerHTML;
