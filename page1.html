@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
-    /* --- STYLE GLOBAL --- */
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -18,7 +17,6 @@
       flex-direction: column;
     }
 
-    /* --- HEADER --- */
     header {
       display: flex;
       justify-content: space-between;
@@ -48,7 +46,6 @@
       cursor: pointer;
     }
 
-    /* --- SECTIONS --- */
     main {
       flex: 1;
       padding: 40px 60px;
@@ -60,7 +57,6 @@
       display: flex;
     }
 
-    /* section d'accueil (hero) */
     #home {
       align-items: center;
       justify-content: space-between;
@@ -93,7 +89,6 @@
       font-size: 14px;
     }
 
-    /* autres sections */
     .section-simple {
       flex-direction: column;
       max-width: 700px;
@@ -112,7 +107,6 @@
       opacity: 0.8;
     }
 
-    /* --- RESPONSIVE --- */
     @media (max-width: 800px) {
       header {
         padding: 15px 20px;
@@ -188,7 +182,6 @@
 </head>
 
 <body>
-  <!-- HEADER -->
   <header>
     <div class="logo">EquiliSanté</div>
 
@@ -202,9 +195,7 @@
     <button class="btn-login">S'authentifier</button>
   </header>
 
-  <!-- CONTENU -->
   <main>
-    <!-- Accueil -->
     <section id="home" class="section active">
       <div class="hero-text">
         <h1>VOTRE SANTÉ</h1>
@@ -219,7 +210,6 @@
       </div>
     </section>
 
-    <!-- À propos -->
     <section id="apropos" class="section section-simple">
       <h2>À propos</h2>
       <p>
@@ -229,7 +219,6 @@
       </p>
     </section>
 
-    <!-- Fonctionnalités -->
     <section id="fonctionnalites" class="section section-simple">
       <h2>Fonctionnalités principales</h2>
       <p>
@@ -241,7 +230,6 @@
       </p>
     </section>
 
-    <!-- Contact -->
     <section id="contact" class="section section-simple">
       <h2>Contact</h2>
       <p>
@@ -274,7 +262,6 @@
     © 2025 EquiliSanté
   </footer>
 
-  <!-- SCRIPT : navigation entre sections -->
   <script>
     const links = document.querySelectorAll('nav a');
     const sections = document.querySelectorAll('.section');
@@ -282,7 +269,7 @@
     links.forEach(link => {
       link.addEventListener('click', event => {
         event.preventDefault();
-        const targetId = link.getAttribute('href').substring(1); // enlève le #
+        const targetId = link.getAttribute('href').substring(1);
 
         sections.forEach(sec => {
           sec.classList.toggle('active', sec.id === targetId);
