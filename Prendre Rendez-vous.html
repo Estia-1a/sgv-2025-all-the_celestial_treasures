@@ -132,6 +132,7 @@
             <span class="info-rdv-title">Rendez-vous:</span>
             
             <p>
+                <span id="info-doc-type" style="color: #555; font-style: italic;">Spécialité...</span><br>
                 <strong><span id="info-doc-name">Docteur ...</span></strong><br>
                 <span id="info-doc-address">Rue ..., 64120 Bidart</span>
             </p>
@@ -163,7 +164,8 @@
         // State for selected doctor
         var selectedDoctor = {
             name: "Docteur ...",
-            address: "Rue ..., 64120 Bidart"
+            address: "Rue ..., 64120 Bidart",
+            type: "Spécialité..."
         };
 
         // Data for doctors (10 per category)
@@ -207,7 +209,7 @@
         };
 
         // Function to handle doctor selection
-        function selectDoctor(element, name, address) {
+        function selectDoctor(element, name, address, type) {
             // Remove selected class from all cards
             var cards = document.getElementsByClassName("doctor-card");
             for (var i = 0; i < cards.length; i++) {
@@ -219,6 +221,7 @@
             // Update state
             selectedDoctor.name = name;
             selectedDoctor.address = address;
+            selectedDoctor.type = type;
         }
 
         // Function to render doctor list based on category
@@ -232,6 +235,12 @@
                 container.innerHTML = '<p style="text-align: center; color: #666; margin-top: 50px;">Veuillez sélectionner un type de médecin pour voir la liste.</p>';
                 return;
             }
+
+            // Determine display name for type
+            var typeDisplay = "";
+            if (category === "generaliste") typeDisplay = "Médecin généraliste";
+            else if (category === "kine") typeDisplay = "Kiné";
+            else if (category === "dentiste") typeDisplay = "Dentiste";
 
             var list = doctorsData[category];
             for (var i = 0; i < list.length; i++) {
@@ -247,11 +256,11 @@
                 card.innerHTML = content;
                 
                 // Add click event closure
-                (function(d, c) {
+                (function(d, c, t) {
                     c.onclick = function() {
-                        selectDoctor(c, d.name, d.address);
+                        selectDoctor(c, d.name, d.address, t);
                     };
-                })(doc, card);
+                })(doc, card, typeDisplay);
                 
                 container.appendChild(card);
             }
@@ -288,6 +297,7 @@
                     modalText.innerHTML = template;
                     
                     // Update info with selected doctor
+                    document.getElementById("info-doc-type").innerText = selectedDoctor.type;
                     document.getElementById("info-doc-name").innerText = selectedDoctor.name;
                     document.getElementById("info-doc-address").innerText = selectedDoctor.address;
                     
