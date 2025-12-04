@@ -112,15 +112,62 @@
         </div>
     </div>
 
-    <!-- Modal Structure -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2 id="modal-title" style="margin-top: 0;">Titre</h2>
-            <p id="modal-text">Contenu du pop-up...</p>
-            <div class="modal-footer">
-                <button class="confirm-btn">Confirmer</button>
+    <!-- Templates for Modal Content (Hidden) -->
+    <div id="template-choisir-medecin" style="display: none;">
+        <div class="filter-container">
+            <select class="doctor-select">
+                <option>Choisir</option>
+                <option>Médecin généraliste</option>
+                <option>Kiné</option>
+                <option>Dentiste</option>
+            </select>
+        </div>
+        <div class="doctor-list">
+            <div class="doctor-card" onclick="selectDoctor(this, 'Docteur Martin', 'Rue des Lilas, 64120 Bidart')">
+                <div>
+                    <strong>Docteur Martin</strong><br>
+                    Rue des Lilas, 64120 Bidart
+                </div>
             </div>
+            <div class="doctor-card" onclick="selectDoctor(this, 'Docteur Dupont', 'Avenue de la Plage, 64120 Bidart')">
+                <div>
+                    <strong>Docteur Dupont</strong><br>
+                    Avenue de la Plage, 64120 Bidart
+                </div>
+            </div>
+            <div class="doctor-card" onclick="selectDoctor(this, 'Docteur Durand', 'Place de la Mairie, 64120 Bidart')">
+                <div>
+                    <strong>Docteur Durand</strong><br>
+                    Place de la Mairie, 64120 Bidart
+                </div>
+            </div>
+            <div class="doctor-card" onclick="selectDoctor(this, 'Docteur Leroy', 'Boulevard des Pyrénées, 64120 Bidart')">
+                <div>
+                    <strong>Docteur Leroy</strong><br>
+                    Boulevard des Pyrénées, 64120 Bidart
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="template-info-rdv" style="display: none;">
+        <div class="info-rdv-content">
+            <span class="info-rdv-title">Rendez-vous:</span>
+            
+            <p>
+                <strong><span id="info-doc-name">Docteur ...</span></strong><br>
+                <span id="info-doc-address">Rue ..., 64120 Bidart</span>
+            </p>
+            
+            <p>
+                Le <span id="info-date">DD/MM/YYYY</span><br>
+                A <span id="info-time">HH:MN</span>
+            </p>
+            
+            <br>
+            <p>
+                Merci d'arriver 15 minutes avant votre rendez-vous afin de vous présenter à l'accueil.
+            </p>
         </div>
     </div>
 
@@ -128,16 +175,34 @@
         // Get the modal
         var modal = document.getElementById("modal");
         var modalTitle = document.getElementById("modal-title");
-        var modalText = document.getElementById("modal-text");
+        var modalText = document.getElementById("modal-text"); // This is the container for content
 
         // Get the buttons that opens the modal
         var btns = document.getElementsByClassName("action-btn");
 
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-        
         // Get the confirm button
         var confirmBtn = document.getElementsByClassName("confirm-btn")[0];
+
+        // State for selected doctor
+        var selectedDoctor = {
+            name: "Docteur ...",
+            address: "Rue ..., 64120 Bidart"
+        };
+
+        // Function to handle doctor selection
+        function selectDoctor(element, name, address) {
+            // Remove selected class from all cards
+            var cards = document.getElementsByClassName("doctor-card");
+            for (var i = 0; i < cards.length; i++) {
+                cards[i].classList.remove("selected");
+            }
+            // Add selected class to clicked card
+            element.classList.add("selected");
+            
+            // Update state
+            selectedDoctor.name = name;
+            selectedDoctor.address = address;
+        }
 
         // Loop through buttons to add click event
         for (var i = 0; i < btns.length; i++) {
@@ -146,25 +211,43 @@
                 // Remove the arrow character for the title
                 var text = this.innerText.replace('▼', '').trim();
                 modalTitle.innerText = text;
-                modalText.innerText = "Détails pour : " + text;
-            }
-        }
 
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-            modal.style.display = "none";
+                // Clear previous content
+                modalText.innerHTML = "";
+
+                if (text === "Choisir le Médecin") {
+                    var template = document.getElementById("template-choisir-medecin").innerHTML;
+                    modalText.innerHTML = template;
+                    
+                    // Re-apply selection visual if a doctor is already selected
+                    if (selectedDoctor.name !== "Docteur ...") {
+                        // This is a simple check, in a real app we'd use IDs
+                        var cards = modalText.getElementsByClassName("doctor-card");
+                        for (var j = 0; j < cards.length; j++) {
+                            if (cards[j].innerText.includes(selectedDoctor.name)) {
+                                cards[j].classList.add("selected");
+                            }
+                        }
+                    }
+
+                } else if (text === "Informations du Rendez-vous") {
+                    var template = document.getElementById("template-info-rdv").innerHTML;
+                    modalText.innerHTML = template;
+                    
+                    // Update info with selected doctor
+                    document.getElementById("info-doc-name").innerText = selectedDoctor.name;
+                    document.getElementById("info-doc-address").innerText = selectedDoctor.address;
+                    
+                    // Here we could also update date/time if we had logic for that
+                } else {
+                    modalText.innerText = "Détails pour : " + text;
+                }
+            }
         }
         
         // When the user clicks on confirm, close the modal
         confirmBtn.onclick = function() {
             modal.style.display = "none";
-        }
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
         }
     </script>
 </body>
