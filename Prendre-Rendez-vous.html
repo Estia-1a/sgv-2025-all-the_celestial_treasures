@@ -47,6 +47,7 @@
         <div class="right-panel">
             <div class="date-selector">
                 <select id="time-input" class="date-input" style="text-align-last: center; cursor: pointer;">
+                    <option value="" selected disabled>--:--</option>
                     <option value="09:00">09:00</option>
                     <option value="09:30">09:30</option>
                     <option value="10:00">10:00</option>
@@ -363,12 +364,33 @@
         
         // When the user clicks on confirm, close the modal
         confirmBtn.onclick = function() {
+            // Check if we are in the "Informations du Rendez-vous" modal
+            if (modalTitle.innerText === "Informations du Rendez-vous") {
+                // Check if a doctor has been selected
+                var timeVal = document.getElementById("time-input").value;
+                if (selectedDoctor.name !== "Docteur ..." && selectedDoctor.type !== "Spécialité..." && selectedDateObj && timeVal) {
+                    // Success case
+                    alert("Rendez-vous Bien Enregistré");
+                    window.location.href = "page1.html#home";
+                    return;
+                } else {
+                    // Doctor or date/time not selected
+                    if (selectedDoctor.name === "Docteur ..." || selectedDoctor.type === "Spécialité...") {
+                        alert("Veuillez choisir un médecin avant de confirmer.");
+                    } else {
+                        alert("Veuillez choisir une date et une heure pour le rendez-vous.");
+                    }
+                    modal.style.display = "none";
+                    return;
+                }
+            }
+            
             modal.style.display = "none";
         }
 
         // --- Calendar Logic ---
         var currentDate = new Date(); // For navigation
-        var selectedDateObj = new Date(); // For selection (default today)
+        var selectedDateObj = null; // No selection initially
         
         var monthNames = ["JANVIER", "FÉVRIER", "MARS", "AVRIL", "MAI", "JUIN", "JUILLET", "AOÛT", "SEPTEMBRE", "OCTOBRE", "NOVEMBRE", "DÉCEMBRE"];
 
@@ -418,6 +440,10 @@
         }
 
         function updateDateInput() {
+            if (!selectedDateObj) {
+                document.getElementById("date-input").value = "";
+                return;
+            }
             var d = selectedDateObj.getDate();
             var m = selectedDateObj.getMonth() + 1;
             var y = selectedDateObj.getFullYear();
@@ -478,7 +504,8 @@
                     span.innerText = dayCount;
                     
                     // Check if this is the selected date
-                    if (selectedDateObj.getDate() === dayCount && 
+                    if (selectedDateObj && 
+                        selectedDateObj.getDate() === dayCount && 
                         selectedDateObj.getMonth() === month && 
                         selectedDateObj.getFullYear() === year) {
                         span.classList.add("selected-date");
