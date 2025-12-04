@@ -74,7 +74,7 @@
       letter-spacing: 2px;
     }
     .hero-text h1 {
-      font-size: 60px;
+      font-size: 42px;
       margin: 10px 0 20px;
     }
     .hero-text p {
@@ -130,6 +130,60 @@
         width: 100%;
       }
     }
+
+    .section-auth {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-auth h2 {
+  margin-bottom: 20px;
+}
+
+.auth-form {
+  background: rgba(255,255,255,0.15);
+  padding: 25px 30px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 260px;
+  max-width: 320px;
+}
+
+.auth-form label {
+  font-size: 14px;
+}
+
+.auth-form input {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+}
+
+.btn-login-main {
+  margin-top: 10px;
+  padding: 10px 16px;
+  border-radius: 20px;
+  border: none;
+  background: #fff;
+  color: #3a8dff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-help {
+  font-size: 12px;
+  text-align: center;
+}
+
+.auth-help a {
+  color: #fff;
+}
+
+  
   </style>
 </head>
 
@@ -153,7 +207,6 @@
     <!-- Accueil -->
     <section id="home" class="section active">
       <div class="hero-text">
-        <h2>LOREM IPSUM</h2>
         <h1>VOTRE SANTÉ</h1>
         <p>
           Suivez facilement votre activité physique, votre alimentation,
@@ -196,6 +249,25 @@
         <strong>contact@equilisante.fr</strong>
       </p>
     </section>
+
+    <section id="auth" class="section section-auth">
+  <h2>Authentification</h2>
+
+  <form class="auth-form">
+    <label for="email">Adresse e-mail</label>
+    <input type="email" id="email" name="email" placeholder="exemple@mail.com">
+
+    <label for="password">Mot de passe</label>
+    <input type="password" id="password" name="password" placeholder="Votre mot de passe">
+
+    <button type="submit" class="btn-login-main">Se connecter</button>
+
+    <p class="auth-help">
+      Pas encore de compte ? <a href="#">Créer un compte</a>
+    </p>
+  </form>
+</section>
+
   </main>
 
   <footer>
@@ -217,6 +289,15 @@
         });
       });
     });
+    const loginButton = document.querySelector('.btn-login');
+
+loginButton.addEventListener('click', event => {
+  event.preventDefault();
+  sections.forEach(sec => {
+    sec.classList.toggle('active', sec.id === 'auth');
+  });
+});
+
   </script>
 </body>
 </html>
