@@ -24,6 +24,7 @@ body {
     padding: 60px 40px;
     display: flex;
     flex-direction: column;
+    justify-content: center; /* Center buttons vertically */
     gap: 30px;
     border-radius: 0;
     margin-right: 40px; /* Space before separator */
