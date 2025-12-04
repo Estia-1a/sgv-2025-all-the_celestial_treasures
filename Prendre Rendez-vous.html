@@ -20,7 +20,7 @@
                 <fieldset class="modal-fieldset">
                     <legend id="modal-title" class="modal-legend">Titre</legend>
                     <div class="modal-content">
-                        <p id="modal-text">Contenu du pop-up...</p>
+                        <div id="modal-text" style="height: 100%; overflow-y: auto;">Contenu du pop-up...</div>
                     </div>
                 </fieldset>
             </div>
@@ -112,6 +112,17 @@
             <p>
                 Merci d'arriver 15 minutes avant votre rendez-vous afin de vous présenter à l'accueil.
             </p>
+        </div>
+    </div>
+
+    <div id="template-carnet-sante" style="display: none;">
+        <div class="history-container">
+            <div class="history-header">
+                <div class="history-label">Historique de Rendez-vous</div>
+            </div>
+            <div id="history-list" class="history-list">
+                <!-- JS will populate this -->
+            </div>
         </div>
     </div>
 
@@ -232,6 +243,58 @@
             }
         }
 
+        // Function to render history
+        function renderHistory() {
+            var container = document.getElementById("history-list");
+            if (!container) return;
+            
+            // Generate some random history items
+            var dates = [
+                "12/10/2025", "05/09/2025", "20/06/2025", "15/03/2025", "10/01/2025",
+                "12/12/2024", "05/11/2024", "20/08/2024", "15/05/2024", "10/02/2024"
+            ];
+            
+            // Flatten doctors list to pick easily
+            var allDoctors = [];
+            for(var cat in doctorsData) {
+                // Add category to doctor object for display
+                var catName = "";
+                if(cat === "generaliste") catName = "Médecin généraliste";
+                else if(cat === "kine") catName = "Kiné";
+                else if(cat === "dentiste") catName = "Dentiste";
+                
+                // We need to clone the object to avoid modifying the original data with categoryDisplay if we run this multiple times
+                // But here we are just reading.
+                var list = doctorsData[cat];
+                for(var i=0; i<list.length; i++) {
+                    var d = list[i];
+                    allDoctors.push({
+                        name: d.name,
+                        address: d.address,
+                        categoryDisplay: catName
+                    });
+                }
+            }
+            
+            var html = "";
+            for(var i=0; i<dates.length; i++) {
+                // Pick random doctor
+                var doc = allDoctors[Math.floor(Math.random() * allDoctors.length)];
+                
+                html += '<fieldset class="history-item">';
+                html += '<legend>' + dates[i] + '</legend>';
+                html += '<div class="history-details">';
+                html += '<strong>' + doc.name + '</strong><br>';
+                html += '<span style="font-style: italic; color: #555;">' + doc.categoryDisplay + '</span><br>';
+                html += doc.address + '<br>';
+                html += '<a href="https://www.ameli.fr/sites/default/files/styles/webp_ckeditor/public/thumbnails/image/ordonnance-decryptee_0.jpg.webp?itok=FCsP7IiX" target="_blank" class="history-link">Prescription Download</a>';
+                html += '</div>';
+                html += '</fieldset>';
+            }
+            
+            container.innerHTML = html;
+        }
+
         // Loop through buttons to add click event
         for (var i = 0; i < btns.length; i++) {
             btns[i].onclick = function() {
@@ -274,6 +337,10 @@
                     if(document.getElementById("info-date")) document.getElementById("info-date").innerText = dateVal;
                     if(document.getElementById("info-time")) document.getElementById("info-time").innerText = timeVal;
 
+                } else if (text === "Consulter Mon Carnet de Santé") {
+                    var template = document.getElementById("template-carnet-sante").innerHTML;
+                    modalText.innerHTML = template;
+                    renderHistory();
                 } else {
                     modalText.innerText = "Détails pour : " + text;
                 }

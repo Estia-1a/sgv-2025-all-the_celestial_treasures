@@ -6,7 +6,7 @@ body {
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
-    background: linear-gradient(145deg, #72f399, #3eda68);
+    background: linear-gradient(145deg, #63c5ff , #3a8dff);
 }
 
 .main-container {
@@ -38,7 +38,7 @@ body {
 }
 
 .action-btn {
-    background-color: #e0e0e0;
+    background-color: #63f7ff;
     border: 1px solid #000;
     padding: 25px 20px;
     font-size: 18px;
@@ -199,7 +199,7 @@ body {
 }
 
 .confirm-btn {
-    background-color: white;
+    background-color: #63f7ff;
     border: 1px solid black;
     color: #000; 
     padding: 8px 20px;
@@ -276,4 +276,58 @@ body {
     font-size: 20px;
     margin-bottom: 20px;
     display: block;
+}
+
+/* History / Carnet de Santé Styles */
+.history-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.history-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.history-label {
+    background-color: #fff;
+    border: 2px solid #000;
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.history-list {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.history-item {
+    border: 2px solid #000;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.history-item legend {
+    padding: 0 5px;
+    font-weight: bold;
+    margin-left: 0; 
+    background-color: #fff; /* Ensure text is readable over border if it overlaps */
+}
+
+.history-details {
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.history-link {
+    color: #0056b3;
+    text-decoration: underline;
+    display: inline-block;
+    margin-top: 5px;
+    cursor: pointer;
 }
