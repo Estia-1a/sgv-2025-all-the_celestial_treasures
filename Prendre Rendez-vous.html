@@ -31,7 +31,26 @@
         <!-- Right Panel -->
         <div class="right-panel">
             <div class="date-selector">
-                <input type="text" id="time-input" class="date-input" placeholder="HH:MM" value="09:00">
+                <select id="time-input" class="date-input" style="text-align-last: center; cursor: pointer;">
+                    <option value="09:00">09:00</option>
+                    <option value="09:30">09:30</option>
+                    <option value="10:00">10:00</option>
+                    <option value="10:30">10:30</option>
+                    <option value="11:00">11:00</option>
+                    <option value="11:30">11:30</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="13:30">13:30</option>
+                    <option value="14:00">14:00</option>
+                    <option value="14:30">14:30</option>
+                    <option value="15:00">15:00</option>
+                    <option value="15:30">15:30</option>
+                    <option value="16:00">16:00</option>
+                    <option value="16:30">16:30</option>
+                    <option value="17:00">17:00</option>
+                    <option value="17:30">17:30</option>
+                    <option value="18:00">18:00</option>
+                </select>
                 <input type="text" id="date-input" class="date-input" placeholder="DD / MM / YYYY">
                 <span class="calendar-icon">📅</span>
             </div>
@@ -421,6 +440,87 @@
         document.getElementById("time-input").addEventListener("change", function() {
              if(document.getElementById("info-time")) {
                 document.getElementById("info-time").innerText = this.value;
+            }
+        });
+
+        // Date Input Masking Logic
+        var dateInputEl = document.getElementById("date-input");
+        
+        dateInputEl.addEventListener('input', function(e) {
+            var input = e.target;
+            var val = input.value;
+            var cursor = input.selectionStart;
+            
+            // Keep only numbers
+            var clean = val.replace(/\D/g, '');
+            
+            // Limit length
+            if (clean.length > 8) clean = clean.substring(0, 8);
+            
+            // Format
+            var formatted = '';
+            if (clean.length > 0) {
+                formatted = clean.substring(0, 2);
+            }
+            if (clean.length >= 3) {
+                formatted += ' / ' + clean.substring(2, 4);
+            } else if (clean.length >= 2) {
+                formatted += ' / ';
+            }
+            
+            if (clean.length >= 5) {
+                formatted += ' / ' + clean.substring(4, 8);
+            } else if (clean.length >= 4) {
+                formatted += ' / ';
+            }
+            
+            // If we are deleting and hit a separator, we might want to remove the separator?
+            // But the user said "cannot delete /".
+            // The logic above reconstructs the separators based on digit count.
+            // If I have "12 / " and I backspace, clean is "12", formatted is "12 / ".
+            // So I can't delete the slash by backspacing it if I have 2 digits.
+            // I have to delete the digit.
+            
+            input.value = formatted;
+        });
+
+        dateInputEl.addEventListener('keydown', function(e) {
+            if (e.key === 'Backspace') {
+                var start = this.selectionStart;
+                var end = this.selectionEnd;
+                
+                // If no selection and cursor is after a separator
+                if (start === end) {
+                    var charBefore = this.value.charAt(start - 1);
+                    // If we are trying to delete a space or slash
+                    if (charBefore === '/' || charBefore === ' ') {
+                        e.preventDefault();
+                        // Move cursor back to delete the digit instead
+                        // Find the previous digit
+                        var newPos = start - 1;
+                        while (newPos > 0 && (this.value.charAt(newPos - 1) === '/' || this.value.charAt(newPos - 1) === ' ')) {
+                            newPos--;
+                        }
+                        
+                        // Now we are after a digit (or at start). 
+                        // We want to delete that digit.
+                        // But wait, if we just move cursor, the user has to press backspace again?
+                        // Or we can simulate deletion?
+                        // Simulating deletion is complex.
+                        // Let's just move the cursor so the NEXT backspace deletes the digit.
+                        // Or better: delete the digit for them.
+                        
+                        if (newPos > 0) {
+                            var val = this.value;
+                            var newVal = val.substring(0, newPos - 1) + val.substring(start);
+                            this.value = newVal;
+                            this.setSelectionRange(newPos - 1, newPos - 1);
+                            // Trigger input event to reformat
+                            var event = new Event('input');
+                            this.dispatchEvent(event);
+                        }
+                    }
+                }
             }
         });
     </script>
