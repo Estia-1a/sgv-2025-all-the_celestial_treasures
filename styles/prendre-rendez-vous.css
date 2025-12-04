@@ -6,7 +6,7 @@ body {
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
-    background-color: #fff;
+    background: linear-gradient(145deg, #72f399, #3eda68);
 }
 
 .main-container {
@@ -124,6 +124,7 @@ body {
     padding: 10px;
     border-right: 1px solid #000;
     border-top: 1px solid #000;
+    background-color: white;
 }
 
 .date-number {
