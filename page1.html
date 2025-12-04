@@ -1,60 +1,162 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <style>
-    footer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: #ffffff;
-        padding: 15px 0;
-        text-align: center;
-        box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-    }
-
-    .auth-btn {
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        padding: 12px 20px;
-        font-size: 18px;
-        border-radius: 8px;
-        cursor: pointer;
-    }
-
-    .auth-btn:hover {
-        background-color: #45a049;
-    }
-
-    body {
-        margin: 0;
-        padding-bottom: 80px; /* Pour ne pas cacher le contenu sous le footer */
-    }
-    .logo-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-
-.logo {
-    width: 500px;
-}
-
-</style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EquiliSanté</title>
+
+    <style>
+        /* Style global */
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            /* Dégradé de fond */
+            background: linear-gradient(135deg, #72f399, #3eda68);
+        }
+
+        /* En-tête */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+        }
+
+        .btn-login {
+            padding: 8px 20px;
+            background: white;
+            color: #0078ff;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* Section principale (hero) */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 60px;
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        .hero-text {
+            max-width: 500px;
+        }
+
+        .hero-text h2 {
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+
+        .hero-text h1 {
+            font-size: 46px;
+            margin: 10px 0;
+        }
+
+        .hero-text p {
+            font-size: 14px;
+            line-height: 1.6;
+            max-width: 420px;
+        }
+
+        /* Zone image à droite (placeholder) */
+        .hero-image {
+            width: 420px;
+            height: 260px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 800px) {
+            header {
+                padding: 15px 20px;
+            }
+            main {
+                padding: 20px;
+            }
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+            .hero-text, .hero-image {
+                max-width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>EquiliSanté</h1>
-    <div class="logo-container">
-    <img src="santé.png" alt="Logo EquiliSanté" class="logo">
-</div>
-</body>
+
+<header>
+    <div class="logo">EquiliSanté</div>
+
+    <nav>
+        <a href="#">Equilisanté</a>
+        <a href="#">À propos</a>
+        <a href="#">Fonctionnalités</a>
+    </nav>
+
+    <button class="btn-login">S'authentifier</button>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="hero-text">
+            <h1>VOTRE SANTÉ</h1>
+            <p>
+                Suivez facilement votre activité physique, votre alimentation,
+                votre sommeil et votre bien-être mental avec EquiliSanté.
+            </p>
+        </div>
+
+        <div class="hero-image">
+            Ici, tu pourras mettre une illustration ou une image plus tard
+        </div>
+    </section>
+</main>
+
 <footer>
-    <button class="auth-btn">S'authentifier</button>
+    © 2025 EquiliSanté
 </footer>
+
+</body>
 </html>
