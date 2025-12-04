@@ -212,3 +212,9 @@ body {
 .confirm-btn:hover {
     background-color: #f0f0f0;
 }
+
+.confirm-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
