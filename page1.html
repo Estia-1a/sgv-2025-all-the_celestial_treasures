@@ -1,162 +1,222 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EquiliSanté</title>
+  <meta charset="UTF-8">
+  <title>EquiliSanté</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <style>
-        /* Style global */
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            color: white;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            /* Dégradé de fond */
-            background: linear-gradient(145deg, #72f399, #3eda68);
-        }
+  <style>
+    /* --- STYLE GLOBAL --- */
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #63c5ff, #3a8dff);
+      display: flex;
+      flex-direction: column;
+    }
 
-        /* En-tête */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 60px;
-        }
+    /* --- HEADER --- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 22px;
+    }
+    nav a {
+      margin: 0 12px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 16px;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .btn-login {
+      padding: 8px 20px;
+      border-radius: 20px;
+      border: none;
+      background: #fff;
+      color: #3a8dff;
+      font-weight: 600;
+      cursor: pointer;
+    }
 
-        .logo {
-            font-weight: bold;
-            font-size: 24px;
-        }
+    /* --- SECTIONS --- */
+    main {
+      flex: 1;
+      padding: 40px 60px;
+    }
+    .section {
+      display: none;
+    }
+    .section.active {
+      display: flex;
+    }
 
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: white;
-            font-size: 18px;
-        }
+    /* section d'accueil (hero) */
+    #home {
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .hero-text {
+      max-width: 520px;
+    }
+    .hero-text h2 {
+      font-size: 16px;
+      letter-spacing: 2px;
+    }
+    .hero-text h1 {
+      font-size: 60px;
+      margin: 10px 0 20px;
+    }
+    .hero-text p {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .hero-image {
+      width: 420px;
+      height: 260px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
 
-        .btn-login {
-            padding: 12px 24px;
-            background: white;
-            color: #0078ff;
-            border-radius: 20px;
-            border: none;
-            cursor: pointer;
-            font-weight: 800;
-        }
+    /* autres sections */
+    .section-simple {
+      flex-direction: column;
+      max-width: 700px;
+    }
+    .section-simple h2 {
+      margin-bottom: 10px;
+    }
+    .section-simple p {
+      line-height: 1.5;
+    }
 
-        /* Section principale (hero) */
-        main {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 60px;
-        }
+    footer {
+      text-align: center;
+      padding: 10px;
+      font-size: 12px;
+      opacity: 0.8;
+    }
 
-        .hero {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            max-width: 1100px;
-            width: 100%;
-        }
-
-        .hero-text {
-            max-width: 500px;
-        }
-
-        .hero-text h2 {
-            font-size: 18px;
-            letter-spacing: 2px;
-        }
-
-        .hero-text h1 {
-            font-size: 46px;
-            margin: 10px 0;
-        }
-
-        .hero-text p {
-            font-size: 18px;
-            line-height: 1.5;
-            max-width: 500px;
-        }
-
-        /* Zone image à droite (placeholder) */
-        .hero-image {
-            width: 420px;
-            height: 260px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 10px;
-            font-size: 12px;
-            opacity: 0.8;
-        }
-
-        @media (max-width: 800px) {
-            header {
-                padding: 15px 20px;
-            }
-            main {
-                padding: 20px;
-            }
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                gap: 30px;
-            }
-            .hero-text, .hero-image {
-                max-width: 100%;
-            }
-        }
-    </style>
+    /* --- RESPONSIVE --- */
+    @media (max-width: 800px) {
+      header {
+        padding: 15px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      main {
+        padding: 20px;
+      }
+      #home {
+        flex-direction: column;
+      }
+      .hero-image {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
-<body>
 
-<header>
+<body>
+  <!-- HEADER -->
+  <header>
     <div class="logo">EquiliSanté</div>
 
     <nav>
-        <a href="#">Equilisanté</a>
-        <a href="#">À propos</a>
-        <a href="#">Fonctionnalités</a>
+      <a href="#home">EquiliSanté</a>
+      <a href="#apropos">À propos</a>
+      <a href="#fonctionnalites">Fonctionnalités</a>
+      <a href="#contact">Contact</a>
     </nav>
 
     <button class="btn-login">S'authentifier</button>
-</header>
+  </header>
 
-<main>
-    <section class="hero">
-        <div class="hero-text">
-            <h1>VOTRE SANTÉ</h1>
-            <p>
-                Suivez facilement votre activité physique, votre alimentation,
-                votre sommeil et votre bien-être mental avec EquiliSanté.
-            </p>
-        </div>
+  <!-- CONTENU -->
+  <main>
+    <!-- Accueil -->
+    <section id="home" class="section active">
+      <div class="hero-text">
+        <h2>LOREM IPSUM</h2>
+        <h1>VOTRE SANTÉ</h1>
+        <p>
+          Suivez facilement votre activité physique, votre alimentation,
+          votre sommeil et votre bien-être mental avec EquiliSanté.
+        </p>
+      </div>
 
-        <div class="hero-image">
-            Ici, tu pourras mettre une illustration ou une image plus tard
-        </div>
+      <div class="hero-image">
+        photo de l'application
+      </div>
     </section>
-</main>
 
-<footer>
+    <!-- À propos -->
+    <section id="apropos" class="section section-simple">
+      <h2>À propos</h2>
+      <p>
+        EquiliSanté est une application de suivi de la santé pensée pour les
+        résidents du Pays Basque : activité physique, alimentation, sommeil
+        et gestion du stress au même endroit.
+      </p>
+    </section>
+
+    <!-- Fonctionnalités -->
+    <section id="fonctionnalites" class="section section-simple">
+      <h2>Fonctionnalités principales</h2>
+      <p>
+        • Suivi de l'activité (pas, sport, vélo, etc.)<br>
+        • Journal alimentaire simple à remplir<br>
+        • Suivi du sommeil et de la fatigue<br>
+        • Indicateur de stress et humeur<br>
+        • Conseils personnalisés selon vos données.
+      </p>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section section-simple">
+      <h2>Contact</h2>
+      <p>
+        Pour toute question ou suggestion, vous pouvez nous écrire à :
+        <strong>contact@equilisante.fr</strong>
+      </p>
+    </section>
+  </main>
+
+  <footer>
     © 2025 EquiliSanté
-</footer>
+  </footer>
 
+  <!-- SCRIPT : navigation entre sections -->
+  <script>
+    const links = document.querySelectorAll('nav a');
+    const sections = document.querySelectorAll('.section');
+
+    links.forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        const targetId = link.getAttribute('href').substring(1); // enlève le #
+
+        sections.forEach(sec => {
+          sec.classList.toggle('active', sec.id === targetId);
+        });
+      });
+    });
+  </script>
 </body>
 </html>
