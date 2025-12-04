@@ -194,6 +194,7 @@
 
     <nav>
       <a href="#home">EquiliSanté</a>
+      <a href="Prendre-Rendez-vous.html">Rendez-vous</a>
       <a href="#apropos">À propos</a>
       <a href="#fonctionnalites">Fonctionnalités</a>
       <a href="#contact">Contact</a>
@@ -281,12 +282,16 @@
 
     links.forEach(link => {
       link.addEventListener('click', event => {
-        event.preventDefault();
-        const targetId = link.getAttribute('href').substring(1); // enlève le #
+        const href = link.getAttribute('href');
+        // Only intercept internal anchor links
+        if (href.startsWith('#')) {
+            event.preventDefault();
+            const targetId = href.substring(1); // enlève le #
 
-        sections.forEach(sec => {
-          sec.classList.toggle('active', sec.id === targetId);
-        });
+            sections.forEach(sec => {
+            sec.classList.toggle('active', sec.id === targetId);
+            });
+        }
       });
     });
     const loginButton = document.querySelector('.btn-login');

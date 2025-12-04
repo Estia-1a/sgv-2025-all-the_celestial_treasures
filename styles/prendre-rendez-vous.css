@@ -1,12 +1,44 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 20px;
+    padding: 0;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
     min-height: 100vh;
-    background: linear-gradient(145deg, #63c5ff , #3a8dff);
+    background: linear-gradient(135deg, #63c5ff, #3a8dff);
+    color: #fff;
+}
+
+/* --- HEADER from page1 --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+}
+.logo {
+    font-weight: 700;
+    font-size: 22px;
+}
+nav a {
+    margin: 0 12px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+}
+nav a:hover {
+    text-decoration: underline;
+}
+.btn-login {
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: none;
+    background: #fff;
+    color: #3a8dff;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 .main-container {
@@ -14,27 +46,33 @@ body {
     flex-direction: row;
     width: 100%;
     max-width: 1200px;
-    gap: 0; /* Remove gap, handle spacing with padding/margin around separator */
+    gap: 0;
+    margin: 20px auto;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    padding: 20px;
+    color: #000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 /* Left Column Styles */
 .left-panel {
     flex: 1;
-    border: 1px solid #000;
-    padding: 60px 40px;
+    border: none;
+    padding: 40px;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center buttons vertically */
+    justify-content: center;
     gap: 30px;
     border-radius: 0;
-    margin-right: 40px; /* Space before separator */
-    position: relative; /* For absolute positioning of modal */
+    margin-right: 40px;
+    position: relative;
 }
 
 .vertical-separator {
     width: 1px;
-    background-color: #000;
-    margin-right: 40px; /* Space after separator */
+    background-color: #ccc;
+    margin-right: 40px;
 }
 
 .action-btn {
