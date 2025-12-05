@@ -402,6 +402,8 @@ nav a:hover {
         padding: 10px;
         margin: 10px;
         width: auto;
+        position: relative;
+        padding-bottom: 80px;
     }
 
     .left-panel {
@@ -419,6 +421,18 @@ nav a:hover {
         padding-top: 20px;
         padding-bottom: 20px;
         order: -1;
+    }
+
+    .confirm-container {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        justify-content: center;
+    }
+
+    .confirm-btn {
+        width: 100%;
     }
 
     .date-selector {
