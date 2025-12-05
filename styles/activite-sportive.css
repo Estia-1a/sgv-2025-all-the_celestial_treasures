@@ -1,0 +1,180 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(145deg, #72f399, #3eda68);
+    overflow: hidden;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+}
+
+nav a:hover, nav a.active {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    position: relative;
+    padding: 20px 60px;
+    gap: 40px;
+}
+
+.section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.large-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 600px;
+    height: 450px;
+    padding: 25px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #333;
+    position: relative;
+}
+
+.toggle-container {
+    display: flex;
+    background: #f0f0f0;
+    border-radius: 20px;
+    padding: 5px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.toggle-btn {
+    padding: 8px 20px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 15px;
+    font-weight: bold;
+    color: #666;
+    transition: all 0.2s;
+    font-size: 14px;
+}
+
+.toggle-btn.active {
+    background: white;
+    color: #2a9d8f;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.chart-area {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 20px;
+    border-left: 3px solid #333;
+    border-bottom: 3px solid #333;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.chart-area svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.chart-label {
+    background: white;
+    border: 2px solid #2a9d8f;
+    color: #2a9d8f;
+    padding: 10px 25px;
+    font-weight: bold;
+    border-radius: 25px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-size: 16px;
+}
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: absolute;
+    bottom: 0;
+}
+
+.back-btn {
+    background: white;
+    color: #333;
+    left: 0;
+}
+
+.confirm-btn {
+    background: #2a9d8f;
+    color: white;
+    right: 0;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 900px) {
+    main { 
+        flex-direction: column; 
+        overflow-y: auto; 
+        padding-bottom: 80px;
+        gap: 60px;
+    }
+    .action-btn { 
+        position: static; 
+        width: 100%; 
+        margin-top: 20px; 
+    }
+    .section {
+        width: 100%;
+    }
+}
