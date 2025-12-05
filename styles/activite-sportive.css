@@ -8,7 +8,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(145deg, #72f399, #3eda68);
+    background: linear-gradient(135deg, #63c5ff, #3a8dff);
     overflow: hidden;
 }
 
@@ -36,6 +36,16 @@ nav a {
 nav a:hover, nav a.active {
     opacity: 1;
     text-decoration: underline;
+}
+
+.btn-login {
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: none;
+    background: #fff;
+    color: #3a8dff;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 main {
@@ -93,7 +103,7 @@ main {
 
 .toggle-btn.active {
     background: white;
-    color: #2a9d8f;
+    color: #3a8dff;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
@@ -118,8 +128,8 @@ main {
 
 .chart-label {
     background: white;
-    border: 2px solid #2a9d8f;
-    color: #2a9d8f;
+    border: 2px solid #3a8dff;
+    color: #3a8dff;
     padding: 10px 25px;
     font-weight: bold;
     border-radius: 25px;
@@ -152,8 +162,8 @@ main {
 }
 
 .confirm-btn {
-    background: #2a9d8f;
-    color: white;
+    background: #90ee90;
+    color: #000;
     right: 0;
 }
 
