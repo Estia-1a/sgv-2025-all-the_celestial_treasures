@@ -407,7 +407,8 @@ nav a:hover {
     .left-panel {
         margin-right: 0;
         padding: 20px;
-        border-bottom: 1px solid #ccc;
+        border-bottom: none;
+        border-top: 1px solid #ccc;
     }
 
     .vertical-separator {
@@ -416,6 +417,8 @@ nav a:hover {
 
     .right-panel {
         padding-top: 20px;
+        padding-bottom: 20px;
+        order: -1;
     }
 
     .date-selector {
