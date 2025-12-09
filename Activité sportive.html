@@ -7,73 +7,74 @@
     <link rel="stylesheet" href="styles/activite-sportive.css">
 </head>
 <body>
+    <header>
+        <a href="index.html" style="text-decoration: none; color: inherit;"><div class="logo">EquiliSanté</div></a>
+        <nav>
+            <a href="Bien-être.html">Bien-être</a>
+            <a href="Prendre-Rendez-vous.html">Rendez-vous</a>
+            <a href="index.html#apropos">À propos</a>
+            <a href="index.html#fonctionnalites">Fonctionnalités</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+    </header>
 
-<header>
-    <a href="index.html" style="text-decoration: none; color: inherit;"><div class="logo">EquiliSanté</div></a>
+    <main>
+        <!-- Section Gauche : Activité physique -->
+        <div class="section">
+            <div class="large-card">
+                <div class="toggle-container">
+                    <button class="toggle-btn">Jours</button>
+                    <button class="toggle-btn active">Semaine</button>
+                    <button class="toggle-btn">Mois</button>
+                </div>
+                
+                <div class="chart-area">
+                    <!-- Graphique linéaire -->
+                    <svg viewBox="0 0 200 100" preserveAspectRatio="none" style="width: 100%; height: 100%;">
+                        <!-- Courbe 1 (Gris clair) -->
+                        <polyline points="10,90 50,50 90,60 130,40 170,20 190,10" 
+                                  fill="none" stroke="#e0e0e0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- Courbe 2 (Gris foncé) -->
+                        <polyline points="10,60 50,55 90,30 130,15 170,25 190,30" 
+                                  fill="none" stroke="#a0a0a0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
 
-    <nav>
-        <a href="Bien-être.html">Bien-être</a>
-        <a href="Prendre-Rendez-vous.html">Rendez-vous</a>
-        <a href="index.html#apropos">À propos</a>
-        <a href="index.html#fonctionnalites">Fonctionnalités</a>
-        <a href="index.html#contact">Contact</a>
-    </nav>
-
-    <button class="btn-login">S'authentifier</button>
-</header>
-
-<main>
-    <div class="section">
-        <div class="large-card">
-            <div class="toggle-container">
-                <button class="toggle-btn">Jours</button>
-                <button class="toggle-btn active">Semaine</button>
-                <button class="toggle-btn">Mois</button>
+                <div class="chart-label">Activité physique</div>
             </div>
             
-            <div class="chart-area">
-                <svg viewBox="0 0 100 50" preserveAspectRatio="none">
-                    <polyline points="0,40 25,30 50,25 75,30 100,15" fill="none" stroke="#ccc" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-
-                    <polyline points="0,35 25,32 50,20 75,10 100,18" fill="none" stroke="#3a8dff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-
-            <div class="chart-label">Activité physique</div>
-        </div>
-        
-        <a href="Bien-être.html" class="action-btn back-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-            Retour
-        </a>
-    </div>
-
-    <div class="section">
-        <div class="large-card">
-            <div class="toggle-container">
-                <button class="toggle-btn">Jours</button>
-                <button class="toggle-btn active">Semaine</button>
-                <button class="toggle-btn">Mois</button>
-            </div>
-
-            <div class="chart-area">
-                <svg viewBox="0 0 100 50" preserveAspectRatio="none">
-                    <rect x="15" y="25" width="15" height="25" fill="#e0e0e0" stroke="#333" stroke-width="1"/>
-                    <rect x="35" y="20" width="15" height="30" fill="#999" stroke="#333" stroke-width="1"/>
-                    <rect x="60" y="5" width="15" height="45" fill="#e0e0e0" stroke="#333" stroke-width="1"/>
-                    <rect x="80" y="10" width="15" height="40" fill="#999" stroke="#333" stroke-width="1"/>
-                </svg>
-            </div>
-
-            <div class="chart-label">Nombres de pas</div>
+            <a href="Bien-être.html" class="action-btn back-btn">
+                <span style="font-size: 20px;">←</span> Retour
+            </a>
         </div>
 
-        <button class="action-btn confirm-btn">
-            Confirmer
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </button>
-    </div>
-</main>
+        <!-- Section Droite : Nombres de pas -->
+        <div class="section">
+            <div class="large-card">
+                <div class="toggle-container">
+                    <button class="toggle-btn">Jours</button>
+                    <button class="toggle-btn active">Semaine</button>
+                    <button class="toggle-btn">Mois</button>
+                </div>
 
+                <div class="chart-area">
+                    <!-- Graphique en barres -->
+                    <svg viewBox="0 0 200 100" preserveAspectRatio="none" style="width: 100%; height: 100%;">
+                        <!-- Barres -->
+                        <rect x="20" y="40" width="30" height="60" fill="#e0e0e0" stroke="#333" stroke-width="2" />
+                        <rect x="60" y="30" width="30" height="70" fill="#808080" stroke="#333" stroke-width="2" />
+                        <rect x="100" y="10" width="30" height="90" fill="#e0e0e0" stroke="#333" stroke-width="2" />
+                        <rect x="140" y="20" width="30" height="80" fill="#808080" stroke="#333" stroke-width="2" />
+                    </svg>
+                </div>
+
+                <div class="chart-label">Nombres de pas</div>
+            </div>
+
+            <button class="action-btn confirm-btn">
+                Confirmer <span style="border: 2px solid black; padding: 0 4px; border-radius: 4px;">✓</span>
+            </button>
+        </div>
+    </main>
 </body>
 </html>
