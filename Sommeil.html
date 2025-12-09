@@ -18,37 +18,37 @@
         </nav>
     </header>
 
-    <main>
+    <main style="overflow-y: auto;">
         <!-- Section Gauche : Objectif sommeil -->
         <div class="section">
-            <div class="large-card">
-                <!-- Label "Nuit" avec cadre noir -->
-                <div style="margin-bottom: 20px;">
-                    <span style="border: 2px solid black; padding: 5px 20px; font-weight: bold; font-size: 18px; background: white; color: black; display: inline-block;">Nuit</span>
+            <div class="large-card" style="margin-bottom: 10px; position: relative;">
+                <!-- Label "Nuit" -->
+                <div style="position: absolute; top: 20px; width: 100%; text-align: center; z-index: 10;">
+                    <span style="color: #3a8dff; font-weight: bold; font-size: 20px;">Nuit</span>
                 </div>
                 
                 <!-- Suppression du cadre autour de la zone du graphique, car c'est la carte qui fait office de cadre -->
-                <div class="chart-area" style="border: none; align-items: center; justify-content: center; padding: 20px;">
+                <div class="chart-area" style="border: none; align-items: center; justify-content: center; padding: 0; margin: 0; width: 100%; height: 100%;">
                     <!-- Graphique Camembert (Pie Chart) -->
-                    <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%; max-height: 300px;">
+                    <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%;">
                         <!-- 1. Fond complet (Gris clair pour la partie droite) -->
-                        <circle cx="50" cy="50" r="45" fill="#e0e0e0" stroke="none" />
+                        <circle cx="50" cy="50" r="35" fill="#e0e0e0" stroke="none" />
                         
                         <!-- 2. Secteur gauche (Gris foncé) -->
-                        <!-- De midi (50,5) à environ 7h (27.5, 89) dans le sens anti-horaire -->
-                        <path d="M 50 50 L 50 5 A 45 45 0 0 0 27.5 89 Z" fill="#808080" stroke="none" />
+                        <!-- De midi (50,15) à environ 7h (32.5, 80.3) dans le sens anti-horaire -->
+                        <path d="M 50 50 L 50 15 A 35 35 0 0 0 32.5 80.3 Z" fill="#808080" stroke="none" />
                         
                         <!-- 3. Traits noirs par-dessus pour un rendu net -->
                         <!-- Contour du cercle -->
-                        <circle cx="50" cy="50" r="45" fill="none" stroke="#000" stroke-width="3" />
+                        <circle cx="50" cy="50" r="35" fill="none" stroke="#333" stroke-width="3" />
                         <!-- Ligne verticale -->
-                        <line x1="50" y1="50" x2="50" y2="5" stroke="#000" stroke-width="3" stroke-linecap="round" />
+                        <line x1="50" y1="50" x2="50" y2="15" stroke="#333" stroke-width="3" stroke-linecap="round" />
                         <!-- Ligne diagonale -->
-                        <line x1="50" y1="50" x2="27.5" y2="89" stroke="#000" stroke-width="3" stroke-linecap="round" />
+                        <line x1="50" y1="50" x2="32.5" y2="80.3" stroke="#333" stroke-width="3" stroke-linecap="round" />
                     </svg>
                 </div>
 
-                <div class="chart-label" style="border: 2px solid black; color: black; border-radius: 0;">Objectif sommeil</div>
+                <div class="chart-label" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 10;">Objectif sommeil</div>
             </div>
             
             <a href="Bien-être.html" class="action-btn back-btn">
@@ -58,7 +58,7 @@
 
         <!-- Section Droite : Heure de sommeil -->
         <div class="section">
-            <div class="large-card">
+            <div class="large-card" style="margin-bottom: 10px;">
                 <div class="toggle-container">
                     <button class="toggle-btn">Jours</button>
                     <button class="toggle-btn active">Semaine</button>
@@ -70,18 +70,18 @@
                     <svg viewBox="0 0 200 100" preserveAspectRatio="none" style="width: 100%; height: 100%;">
                         <!-- Barres -->
                         <!-- Barre 1 -->
-                        <rect x="30" y="50" width="25" height="40" fill="#e0e0e0" stroke="#000" stroke-width="2" />
+                        <rect x="30" y="50" width="25" height="40" fill="#e0e0e0" stroke="#333" stroke-width="2" />
                         <!-- Barre 2 -->
-                        <rect x="55" y="40" width="25" height="50" fill="#808080" stroke="#000" stroke-width="2" />
+                        <rect x="55" y="40" width="25" height="50" fill="#808080" stroke="#333" stroke-width="2" />
                         
                         <!-- Barre 3 -->
-                        <rect x="100" y="25" width="25" height="65" fill="#e0e0e0" stroke="#000" stroke-width="2" />
+                        <rect x="100" y="25" width="25" height="65" fill="#e0e0e0" stroke="#333" stroke-width="2" />
                         <!-- Barre 4 -->
-                        <rect x="125" y="30" width="25" height="60" fill="#808080" stroke="#000" stroke-width="2" />
+                        <rect x="125" y="30" width="25" height="60" fill="#808080" stroke="#333" stroke-width="2" />
                     </svg>
                 </div>
 
-                <div class="chart-label" style="border: 2px solid black; color: black; border-radius: 0;">Heure de sommeil</div>
+                <div class="chart-label">Heure de sommeil</div>
             </div>
 
             <a href="Bien-être.html" class="action-btn confirm-btn">
