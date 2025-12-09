@@ -22,25 +22,33 @@
         <!-- Section Gauche : Objectif sommeil -->
         <div class="section">
             <div class="large-card">
-                <div class="toggle-container">
-                    <button class="toggle-btn active">Nuit</button>
+                <!-- Label "Nuit" avec cadre noir -->
+                <div style="margin-bottom: 20px;">
+                    <span style="border: 2px solid black; padding: 5px 20px; font-weight: bold; font-size: 18px; background: white; color: black; display: inline-block;">Nuit</span>
                 </div>
                 
-                <div class="chart-area" style="border: 2px solid black; align-items: center; justify-content: center;">
+                <!-- Suppression du cadre autour de la zone du graphique, car c'est la carte qui fait office de cadre -->
+                <div class="chart-area" style="border: none; align-items: center; justify-content: center; padding: 20px;">
                     <!-- Graphique Camembert (Pie Chart) -->
                     <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%; max-height: 300px;">
-                        <!-- Cercle complet (fond) -->
-                        <circle cx="50" cy="50" r="45" fill="none" stroke="#000" stroke-width="2.5" />
+                        <!-- 1. Fond complet (Gris clair pour la partie droite) -->
+                        <circle cx="50" cy="50" r="45" fill="#e0e0e0" stroke="none" />
                         
-                        <!-- Secteur rempli -->
-                        <path d="M 50 50 L 50 5 A 45 45 0 1 0 27.5 89 Z" fill="#a0a0a0" stroke="#000" stroke-width="2.5" stroke-linejoin="round" />
+                        <!-- 2. Secteur gauche (Gris foncé) -->
+                        <!-- De midi (50,5) à environ 7h (27.5, 89) dans le sens anti-horaire -->
+                        <path d="M 50 50 L 50 5 A 45 45 0 0 0 27.5 89 Z" fill="#808080" stroke="none" />
                         
-                        <!-- Ligne de séparation verticale -->
-                        <line x1="50" y1="50" x2="50" y2="5" stroke="#000" stroke-width="2.5" stroke-linecap="round" />
+                        <!-- 3. Traits noirs par-dessus pour un rendu net -->
+                        <!-- Contour du cercle -->
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="#000" stroke-width="3" />
+                        <!-- Ligne verticale -->
+                        <line x1="50" y1="50" x2="50" y2="5" stroke="#000" stroke-width="3" stroke-linecap="round" />
+                        <!-- Ligne diagonale -->
+                        <line x1="50" y1="50" x2="27.5" y2="89" stroke="#000" stroke-width="3" stroke-linecap="round" />
                     </svg>
                 </div>
 
-                <div class="chart-label">Objectif sommeil</div>
+                <div class="chart-label" style="border: 2px solid black; color: black; border-radius: 0;">Objectif sommeil</div>
             </div>
             
             <a href="Bien-être.html" class="action-btn back-btn">
@@ -73,7 +81,7 @@
                     </svg>
                 </div>
 
-                <div class="chart-label">Heure de sommeil</div>
+                <div class="chart-label" style="border: 2px solid black; color: black; border-radius: 0;">Heure de sommeil</div>
             </div>
 
             <a href="Bien-être.html" class="action-btn confirm-btn">
