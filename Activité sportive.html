@@ -18,10 +18,10 @@
         </nav>
     </header>
 
-    <main>
+    <main style="overflow-y: auto;">
         <!-- Section Gauche : Activité physique -->
         <div class="section">
-            <div class="large-card">
+            <div class="large-card" style="margin-bottom: 10px;">
                 <div class="toggle-container">
                     <button class="toggle-btn">Jours</button>
                     <button class="toggle-btn active">Semaine</button>
@@ -31,12 +31,15 @@
                 <div class="chart-area">
                     <!-- Graphique linéaire -->
                     <svg viewBox="0 0 200 100" preserveAspectRatio="none" style="width: 100%; height: 100%;">
+                        <!-- Axes -->
+                        <line x1="10" y1="10" x2="10" y2="90" stroke="#000" stroke-width="2" />
+                        <line x1="10" y1="90" x2="190" y2="90" stroke="#000" stroke-width="2" />
                         <!-- Courbe 1 (Gris clair) -->
                         <polyline points="10,90 50,50 90,60 130,40 170,20 190,10" 
                                   fill="none" stroke="#e0e0e0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
                         <!-- Courbe 2 (Gris foncé) -->
                         <polyline points="10,60 50,55 90,30 130,15 170,25 190,30" 
-                                  fill="none" stroke="#a0a0a0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                  fill="none" stroke="#808080" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
 
@@ -44,13 +47,14 @@
             </div>
             
             <a href="Bien-être.html" class="action-btn back-btn">
-                <span style="font-size: 20px;">←</span> Retour
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Retour
             </a>
         </div>
 
         <!-- Section Droite : Nombres de pas -->
         <div class="section">
-            <div class="large-card">
+            <div class="large-card" style="margin-bottom: 10px;">
                 <div class="toggle-container">
                     <button class="toggle-btn">Jours</button>
                     <button class="toggle-btn active">Semaine</button>
@@ -60,15 +64,18 @@
                 <div class="chart-area">
                     <!-- Graphique en barres -->
                     <svg viewBox="0 0 200 100" preserveAspectRatio="none" style="width: 100%; height: 100%;">
+                        <!-- Axes -->
+                        <line x1="10" y1="10" x2="10" y2="90" stroke="#000" stroke-width="2" />
+                        <line x1="10" y1="90" x2="190" y2="90" stroke="#000" stroke-width="2" />
                         <!-- Barres -->
-                        <rect x="20" y="40" width="30" height="60" fill="#e0e0e0" stroke="#333" stroke-width="2" />
-                        <rect x="60" y="30" width="30" height="70" fill="#808080" stroke="#333" stroke-width="2" />
-                        <rect x="100" y="10" width="30" height="90" fill="#e0e0e0" stroke="#333" stroke-width="2" />
-                        <rect x="140" y="20" width="30" height="80" fill="#808080" stroke="#333" stroke-width="2" />
+                        <rect x="20" y="30" width="30" height="60" fill="#e0e0e0" stroke="#333" stroke-width="2" />
+                        <rect x="60" y="20" width="30" height="70" fill="#808080" stroke="#333" stroke-width="2" />
+                        <rect x="100" y="0" width="30" height="90" fill="#e0e0e0" stroke="#333" stroke-width="2" />
+                        <rect x="140" y="10" width="30" height="80" fill="#808080" stroke="#333" stroke-width="2" />
                     </svg>
                 </div>
 
-                <div class="chart-label">Nombres de pas</div>
+                <div class="chart-label">Nombre de pas</div>
             </div>
 
             <a href="Bien-être.html" class="action-btn confirm-btn">

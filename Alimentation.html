@@ -4,78 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alimentation - EquiliSanté</title>
-    <link rel="stylesheet" href="styles/alimentation.css">
+    <link rel="stylesheet" href="styles/activite-sportive.css">
 </head>
 <body>
+    <header>
+        <a href="index.html" style="text-decoration: none; color: inherit;"><div class="logo">EquiliSanté</div></a>
+        <nav>
+            <a href="Bien-être.html">Bien-être</a>
+            <a href="Prendre-Rendez-vous.html">Rendez-vous</a>
+            <a href="index.html#apropos">À propos</a>
+            <a href="index.html#fonctionnalites">Fonctionnalités</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+    </header>
 
-<header>
-    <a href="index.html" style="text-decoration: none; color: inherit;"><div class="logo">EquiliSanté</div></a>
+    <main style="overflow-y: auto;">
+        <!-- Section Gauche : Evolution des calories -->
+        <div class="section">
+            <div class="large-card" style="margin-bottom: 10px;">
+                <!-- Label Haut -->
+                <div style="margin-bottom: 20px;">
+                    <span style="border: 2px solid #333; padding: 5px 15px; border-radius: 5px; font-weight: bold; color: #333;">Evolution des calories</span>
+                </div>
+                
+                <div class="chart-area">
+                    <!-- Graphique linéaire -->
+                    <svg viewBox="0 0 200 100" preserveAspectRatio="none" style="width: 100%; height: 100%;">
+                        <!-- Axes -->
+                        <line x1="10" y1="10" x2="10" y2="90" stroke="#000" stroke-width="2" />
+                        <line x1="10" y1="90" x2="190" y2="90" stroke="#000" stroke-width="2" />
 
-    <nav>
-        <a href="Bien-être.html">Bien-être</a>
-        <a href="Prendre-Rendez-vous.html">Rendez-vous</a>
-        <a href="index.html#apropos">À propos</a>
-        <a href="index.html#fonctionnalites">Fonctionnalités</a>
-        <a href="index.html#contact">Contact</a>
-    </nav>
+                        <!-- Courbe 1 (Gris clair) -->
+                        <polyline points="10,90 50,50 90,60 130,40 170,20 190,10" 
+                                  fill="none" stroke="#e0e0e0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- Courbe 2 (Gris foncé) -->
+                        <polyline points="10,70 50,65 90,40 130,25 170,35 190,40" 
+                                  fill="none" stroke="#808080" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
 
-    <button class="btn-login">S'authentifier</button>
-</header>
-
-<main>
-    <div class="section">
-        <div class="large-card">
-            <div class="toggle-container">
-                <button class="toggle-btn">Jours</button>
-                <button class="toggle-btn active">Semaine</button>
-                <button class="toggle-btn">Mois</button>
+                <div class="chart-label">Jours de la semaine</div>
             </div>
             
-            <div class="chart-area pie-mode">
-                <!-- Pie Chart Placeholder for Alimentation -->
-                <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
-                    <circle cx="50" cy="50" r="40" fill="#e0e0e0" />
-                    <path d="M50,50 L50,10 A40,40 0 0,1 90,50 Z" fill="#3a8dff" />
-                    <path d="M50,50 L90,50 A40,40 0 0,1 50,90 Z" fill="#63c5ff" />
-                    <path d="M50,50 L50,90 A40,40 0 0,1 10,50 Z" fill="#90ee90" />
-                </svg>
-            </div>
-
-            <div class="chart-label">Répartition des repas</div>
-        </div>
-        
-        <a href="Bien-être.html" class="action-btn back-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-            Retour
-        </a>
-    </div>
-
-    <div class="section">
-        <div class="large-card">
-            <div class="toggle-container">
-                <button class="toggle-btn">Jours</button>
-                <button class="toggle-btn active">Semaine</button>
-                <button class="toggle-btn">Mois</button>
-            </div>
-
-            <div class="chart-area">
-                <svg viewBox="0 0 100 50" preserveAspectRatio="none">
-                    <rect x="10" y="10" width="10" height="40" fill="#3a8dff" />
-                    <rect x="30" y="20" width="10" height="30" fill="#63c5ff" />
-                    <rect x="50" y="15" width="10" height="35" fill="#90ee90" />
-                    <rect x="70" y="25" width="10" height="25" fill="#e0e0e0" />
-                </svg>
-            </div>
-
-            <div class="chart-label">Calories consommées</div>
+            <a href="Bien-être.html" class="action-btn back-btn">
+                <span style="font-size: 20px;">←</span> Retour
+            </a>
         </div>
 
-        <button class="action-btn confirm-btn">
-            Confirmer
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </button>
-    </div>
-</main>
+        <!-- Section Droite : Nombre de repas / jours -->
+        <div class="section">
+            <div class="large-card" style="margin-bottom: 10px;">
+                <!-- Label Haut -->
+                <div style="margin-bottom: 20px;">
+                    <span style="border: 2px solid #333; padding: 5px 15px; border-radius: 5px; font-weight: bold; color: #333;">Jours</span>
+                </div>
 
+                <div class="chart-area">
+                    <!-- Graphique en barres -->
+                    <svg viewBox="0 0 200 100" preserveAspectRatio="none" style="width: 100%; height: 100%;">
+                        <!-- Axes -->
+                        <line x1="10" y1="10" x2="10" y2="90" stroke="#000" stroke-width="2" />
+                        <line x1="10" y1="90" x2="190" y2="90" stroke="#000" stroke-width="2" />
+
+                        <!-- Barres Groupe 1 -->
+                        <rect x="30" y="50" width="25" height="40" fill="#e0e0e0" stroke="#333" stroke-width="2" />
+                        <rect x="55" y="40" width="25" height="50" fill="#808080" stroke="#333" stroke-width="2" />
+                        
+                        <!-- Barres Groupe 2 -->
+                        <rect x="110" y="25" width="25" height="65" fill="#e0e0e0" stroke="#333" stroke-width="2" />
+                        <rect x="135" y="30" width="25" height="60" fill="#808080" stroke="#333" stroke-width="2" />
+                    </svg>
+                </div>
+
+                <div class="chart-label">Nombre de repas / jours</div>
+            </div>
+
+            <a href="Bien-être.html" class="action-btn confirm-btn">
+                Confirmer <span style="border: 2px solid black; padding: 0 4px; border-radius: 4px;">✓</span>
+            </a>
+        </div>
+    </main>
 </body>
 </html>
