@@ -246,6 +246,9 @@
         }
 
         @media (max-width: 900px) {
+            body {
+                overflow-y: auto;
+            }
             header {
                 padding: 15px 20px;
                 flex-direction: column;
@@ -263,14 +266,27 @@
             }
             main { 
                 flex-direction: column; 
-                overflow-y: auto; 
+                overflow: visible; 
                 padding: 20px;
                 gap: 40px;
+                height: auto;
             }
-            .back-btn, .confirm-btn { 
+            .left-section, .right-section {
+                display: contents;
+            }
+            .chart-card {
+                order: 1;
+            }
+            .phone-mockup {
+                order: 2;
+                margin-bottom: 20px;
+            }
+            .back-btn { 
                 position: static; 
                 width: 100%;
                 margin-top: 10px;
+                margin-bottom: 40px;
+                order: 3;
             }
         }
     </style>
