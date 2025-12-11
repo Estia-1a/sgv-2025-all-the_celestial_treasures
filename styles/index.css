@@ -237,3 +237,8 @@ text-align: center;
 .auth-help a {
 color: #fff;
 }
+
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+}

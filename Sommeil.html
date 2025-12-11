@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sommeil - EquiliSanté</title>
     <link rel="stylesheet" href="styles/activite-sportive.css">
+    <link rel="stylesheet" href="styles/sommeil.css">
 </head>
 <body>
     <header>
-        <a href="index.html" style="text-decoration: none; color: inherit;"><div class="logo">EquiliSanté</div></a>
+        <a href="index.html" class="logo-link"><div class="logo">EquiliSanté</div></a>
         <nav>
             <a href="Bien-être.html">Bien-être</a>
             <a href="Prendre-Rendez-vous.html">Rendez-vous</a>
@@ -18,19 +19,19 @@
         </nav>
     </header>
 
-    <main style="overflow-y: auto;">
+    <main>
         <!-- Section Gauche : Objectif sommeil -->
         <div class="section">
-            <div class="large-card" style="margin-bottom: 10px; position: relative;">
+            <div class="large-card sommeil-card">
                 <!-- Label "Nuit" -->
-                <div style="position: absolute; top: 20px; width: 100%; text-align: center; z-index: 10;">
-                    <span style="color: #3a8dff; font-weight: bold; font-size: 20px;">Nuit</span>
+                <div class="sommeil-label-container">
+                    <span class="sommeil-label-text">Nuit</span>
                 </div>
                 
                 <!-- Suppression du cadre autour de la zone du graphique, car c'est la carte qui fait office de cadre -->
-                <div class="chart-area" style="border: none; align-items: center; justify-content: center; padding: 0; margin: 0; width: 100%; height: 100%;">
+                <div class="chart-area sommeil-chart-area">
                     <!-- Graphique Camembert (Pie Chart) -->
-                    <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%;">
+                    <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" class="sommeil-svg">
                         <!-- 1. Fond complet (Gris clair pour la partie droite) -->
                         <circle cx="50" cy="50" r="35" fill="#e0e0e0" stroke="none" />
                         
@@ -48,17 +49,17 @@
                     </svg>
                 </div>
 
-                <div class="chart-label" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 10;">Objectif sommeil</div>
+                <div class="chart-label sommeil-chart-label">Objectif sommeil</div>
             </div>
             
             <a href="Bien-être.html" class="action-btn back-btn">
-                <span style="font-size: 20px;">←</span> Retour
+                <span class="arrow-icon">←</span> Retour
             </a>
         </div>
 
         <!-- Section Droite : Heure de sommeil -->
         <div class="section">
-            <div class="large-card" style="margin-bottom: 10px;">
+            <div class="large-card sommeil-card-margin">
                 <div class="toggle-container">
                     <button class="toggle-btn">Jours</button>
                     <button class="toggle-btn active">Semaine</button>
@@ -67,7 +68,7 @@
 
                 <div class="chart-area">
                     <!-- Graphique en barres -->
-                    <svg viewBox="0 0 200 100" preserveAspectRatio="none" style="width: 100%; height: 100%;">
+                    <svg viewBox="0 0 200 100" preserveAspectRatio="none" class="sommeil-svg">
                         <!-- Barres -->
                         <!-- Barre 1 -->
                         <rect x="30" y="50" width="25" height="40" fill="#e0e0e0" stroke="#333" stroke-width="2" />
@@ -85,7 +86,7 @@
             </div>
 
             <a href="Bien-être.html" class="action-btn confirm-btn">
-                Confirmer <span style="border: 2px solid black; padding: 0 4px; border-radius: 4px;">✓</span>
+                Confirmer <span class="checkmark-style">✓</span>
             </a>
         </div>
     </main>
