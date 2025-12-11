@@ -149,6 +149,10 @@ main {
 .bar.fill {
     background: #3a8dff;
 }
+.bar.h-30 { height: 30px; }
+.bar.h-50 { height: 50px; }
+.bar.h-80 { height: 80px; }
+.bar.h-60 { height: 60px; }
 
 .pie-chart {
     width: 80px;

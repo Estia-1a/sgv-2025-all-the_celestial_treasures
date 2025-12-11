@@ -391,6 +391,31 @@ nav a:hover {
     color: inherit;
 }
 
+/* Utility Classes */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.empty-message {
+    text-align: center;
+    color: #666;
+    margin-top: 50px;
+}
+
+.doc-type-info {
+    color: #555;
+    font-style: italic;
+}
+
+.doc-category-display {
+    font-style: italic;
+    color: #555;
+}
+
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
     header {

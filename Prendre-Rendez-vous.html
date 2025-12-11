@@ -68,9 +68,9 @@
 
             <div class="calendar-container">
                 <div class="calendar-header">
-                    <span id="prev-month" style="cursor: pointer;">◄</span>
+                    <span id="prev-month" class="cursor-pointer">◄</span>
                     <span id="month-label">NOVEMBER 2025</span>
-                    <span id="next-month" style="cursor: pointer;">►</span>
+                    <span id="next-month" class="cursor-pointer">►</span>
                 </div>
                 <div id="calendar-grid" class="calendar-grid">
                     <div class="day-name">LUN</div>
@@ -89,7 +89,7 @@
         </div>
     </div>
 
-    <div id="template-choisir-medecin" style="display: none;">
+    <div id="template-choisir-medecin" class="hidden">
         <div class="filter-container">
             <select id="doctor-category-select" class="doctor-select">
                 <option value="">Choisir le type de spécialiste</option>
@@ -99,16 +99,16 @@
             </select>
         </div>
         <div id="doctor-list-container" class="doctor-list">
-            <p style="text-align: center; color: #666; margin-top: 50px;">Veuillez sélectionner un type de médecin pour voir la liste.</p>
+            <p class="empty-message">Veuillez sélectionner un type de médecin pour voir la liste.</p>
         </div>
     </div>
 
-    <div id="template-info-rdv" style="display: none;">
+    <div id="template-info-rdv" class="hidden">
         <div class="info-rdv-content">
             <span class="info-rdv-title">Rendez-vous:</span>
             
             <p>
-                <span id="info-doc-type" style="color: #555; font-style: italic;">Spécialité...</span><br>
+                <span id="info-doc-type" class="doc-type-info">Spécialité...</span><br>
                 <strong><span id="info-doc-name">Docteur ...</span></strong><br>
                 <span id="info-doc-address">...</span>
             </p>
@@ -125,7 +125,7 @@
         </div>
     </div>
 
-    <div id="template-carnet-sante" style="display: none;">
+    <div id="template-carnet-sante" class="hidden">
         <div class="history-container">
             <div class="history-header">
                 <div class="history-label">Historique de Rendez-vous</div>
@@ -209,7 +209,7 @@
             container.innerHTML = "";
 
             if (!category || !doctorsData[category]) {
-                container.innerHTML = '<p style="text-align: center; color: #666; margin-top: 50px;">Veuillez sélectionner un type de médecin pour voir la liste.</p>';
+                container.innerHTML = '<p class="empty-message">Veuillez sélectionner un type de médecin pour voir la liste.</p>';
                 return;
             }
 
@@ -282,7 +282,7 @@
                 html += '<legend>' + dates[i] + '</legend>';
                 html += '<div class="history-details">';
                 html += '<strong>' + doc.name + '</strong><br>';
-                html += '<span style="font-style: italic; color: #555;">' + doc.categoryDisplay + '</span><br>';
+                html += '<span class="doc-category-display">' + doc.categoryDisplay + '</span><br>';
                 html += doc.address + '<br>';
                 html += '<a href="https://www.ameli.fr/sites/default/files/styles/webp_ckeditor/public/thumbnails/image/ordonnance-decryptee_0.jpg.webp?itok=FCsP7IiX" target="_blank" class="history-link">Prescription Download</a>';
                 html += '</div>';
